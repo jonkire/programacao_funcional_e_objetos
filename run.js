@@ -1,13 +1,14 @@
-const vec = [1, 2, 3, 4, 5, 6];
-let soma = 0;
-let somaimpar = 0;
-let product = 1;
+const vec = [1, 2, 3, 4, 5];
 
-vec.forEach((x) => soma += x);
-console.log(soma);
+console.log(
+  vec.reduce((addition, x) => addition += x)
+);
 
-vec.filter((x) => x%2 != 0).forEach((x) => somaimpar+=x);
-console.log(somaimpar);
+console.log(
+  vec.filter((x) => x%2 != 0).reduce((addition, x) => addition+=x)
+);
 
-vec.forEach((x) => product *= x);
-console.log(product);
+console.log(
+  vec.reduce((product, x) => product *= x)
+);
+
