@@ -10,13 +10,16 @@ class Exam {
   }
   
   avg() {
-    let total = 0;
+    let notas = [];
     for (const exam of this.exams) {
+      let total = 0;
       for (const i in exam) {
         if (exam[i] === this.answer[i]) total += this.weight[i];
       }
+      notas.push(total);
     }
-    return total / this.exams.length;
+    const media = notas.reduce((a, b) => a + b, 0) / this.exams.length;
+    return media;
   }
 
   min(count) {
@@ -26,9 +29,9 @@ class Exam {
       for (const i in exam) {
         if (exam[i] === this.answer[i]) total += this.weight[i];
       }
-      notas.push(total)
+      notas.push(total);
     }
-    notas.sort();
+    notas.sort((a, b) => a - b);
     return notas.slice(0, count);
   }
 
@@ -41,7 +44,7 @@ class Exam {
       }
       notas.push(total)
     }
-    notas.sort().reverse();
+    notas.sort((a, b) => b - a);
     return notas.slice(0, count);
   }
 
@@ -73,8 +76,8 @@ class Exam {
 const correctanswers = ['a', 'b', 'a', 'c', 'd'];
 const weight = [2, 2, 2, 2, 2];
 const studentsanswer = ['a', 'b', 'b', 'b', 'b'];
-const studentsanswer2 = ['a', 'b', 'a', 'b', 'b'];
-const studentsanswer3 = ['a', 'b', 'a', 'c', 'b']; 
+const studentsanswer2 = ['a', 'b', 'a', 'a', 'a'];
+const studentsanswer3 = ['a', 'b', 'a', 'c', 'd']; 
 
 const exam = new Exam(correctanswers, weight);
 exam.add(studentsanswer);
